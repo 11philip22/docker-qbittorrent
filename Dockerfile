@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM philipwold/alpine-tini
 
 COPY qBittorrent.conf /default/qBittorrent.conf
 COPY qBittorrent.conf /config/qBittorrent.conf
