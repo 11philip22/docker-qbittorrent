@@ -1,11 +1,12 @@
 FROM philipwold/alpine-tini
 
-COPY qBittorrent.conf /default/qBittorrent.conf
-COPY qBittorrent.conf /config/qBittorrent.conf
 COPY install.sh /install.sh
-
 RUN chmod +x /install.sh; \
     sh /install.sh
+
+COPY qBittorrent.conf /config/qBittorrent.conf
+
+USER user
 
 CMD ["qbittorrent-nox"]
 
