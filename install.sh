@@ -59,7 +59,7 @@ rm -rf /tmp/*
 
 # user stuff
 echo -e "\e[32m[INFO] Creating user \e[0m"
-adduser -S -D -u 1000 -g 1000 -s /sbin/nologin user
+adduser -S -D -u 1000 -g 1000 -s /sbin/nologin qbittorrent
 mkdir -p /home/qbittorrent/.config/qBittorrent
 mkdir -p /home/qbittorrent/.local/share/data/qBittorrent
 ln -s /home/qbittorrent/.config/qBittorrent /config

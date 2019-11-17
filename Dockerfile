@@ -6,7 +6,7 @@ RUN chmod +x /install.sh; \
 
 COPY qBittorrent.conf /config/qBittorrent.conf
 
-USER user
+USER qbittorrent
 
 CMD ["qbittorrent-nox"]
 
