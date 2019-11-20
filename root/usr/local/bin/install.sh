@@ -27,12 +27,6 @@ apk add --no-cache -t .build-deps \
     
 # install libtorrent
 echo -e "\e[32m[INFO] Install libtorrent\e[0m"
-# mkdir -p /tmp/libtorrent-rasterbar/build
-# libtorrent_url=$(curl -sSL https://api.github.com/repos/arvidn/libtorrent/releases/latest | \
-#     grep browser_download_url  | head -2 | tail -1 | cut -d '"' -f 4)
-# curl -sSL "${libtorrent_url}" | tar xzC /tmp/libtorrent-rasterbar
-# cd /tmp/libtorrent-rasterbar/build || exit 1
-# cmake ../libtorrent-rasterbar* && make install
 git clone https://github.com/arvidn/libtorrent.git /tmp/libtorrent
 cd /tmp/libtorrent || exit 1
 git checkout RC_1_2
@@ -45,9 +39,6 @@ make install
 echo -e "\e[32m[INFO] Install qbittorrent\e[0m"
 git clone https://github.com/qbittorrent/qBittorrent.git /tmp/qbittorrent
 cd /tmp/qbittorrent || exit 1
-# latesttag=$(git describe --tags "$(git rev-list --tags --max-count=1)")
-# git checkout "${latesttag}"
-# git checkout v4_1_x
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure --disable-gui --disable-stacktrace
 make -j"$(nproc)"
 make install
@@ -59,8 +50,12 @@ rm -rf /tmp/*
 
 # user stuff
 echo -e "\e[32m[INFO] Creating user \e[0m"
-adduser -S -D -u 1000 -g 1000 -s /sbin/nologin qbittorrent
-mkdir -p /home/qbittorrent/.config/qBittorrent
-mkdir -p /home/qbittorrent/.local/share/data/qBittorrent
-ln -s /home/qbittorrent/.config/qBittorrent /config
-ln -s /home/qbittorrent/.local/share/data/qBittorrent /torrents
+mkdir -p /home/user/.config/qBittorrent
+mkdir -p /home/user/.local/share/data/qBittorrent
+ln -s /home/user/.config/qBittorrent /config
+ln -s /home/user/.local/share/data/qBittorrent /torrents
+echo -e "\e[32m[INFO] Fixing permissions \e[0m"
+chown -R user:user /config
+chown -R user:user /torrents
+chown -R user:user /home/user/.config
+chown -R user:user /home/user/.local

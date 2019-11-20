@@ -1,14 +1,9 @@
-FROM philipwold/alpine-tini
+FROM philipwold/alpine-s6
 
-COPY install.sh /install.sh
-RUN chmod +x /install.sh; \
-    sh /install.sh
+COPY root/ /
 
-COPY qBittorrent.conf /config/qBittorrent.conf
+RUN chmod +x /usr/local/bin/install.sh; \
+    /usr/local/bin/install.sh
 
-USER qbittorrent
-
-CMD ["qbittorrent-nox"]
-
-VOLUME ["/config", "/torrents", "/downloads"]
+VOLUME ["/config", "/torrents"]
 EXPOSE 8080
