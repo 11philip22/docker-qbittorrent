@@ -47,15 +47,3 @@ make install
 echo -e "\e[32m[INFO] Cleanup\e[0m"
 apk del --purge .build-deps
 rm -rf /tmp/* 
-
-# user stuff
-echo -e "\e[32m[INFO] Creating user \e[0m"
-mkdir -p /home/user/.config/qBittorrent
-mkdir -p /home/user/.local/share/data/qBittorrent
-ln -s /home/user/.config/qBittorrent /config
-ln -s /home/user/.local/share/data/qBittorrent /torrents
-echo -e "\e[32m[INFO] Fixing permissions \e[0m"
-chown -R user:user /config
-chown -R user:user /torrents
-chown -R user:user /home/user/.config
-chown -R user:user /home/user/.local
