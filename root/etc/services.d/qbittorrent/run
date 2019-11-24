@@ -1,14 +1,9 @@
 #!/usr/bin/with-contenv sh
 
 UMASK_SET=${UMASK_SET:-022}
-WEBUI_PORT=${WEBUI_PORT:-8080}
+WEBUI_PORT=${WEBUI_PORT:-9000}
 
 umask "$UMASK_SET"
 
-if [ ! -f /config/qBittorrent.conf ]; then
-	cp /defaults/qBittorrent.conf /config/qBittorrent/qBittorrent.conf
-	chown user:user /config/qBittorrent/qBittorrent.conf
-fi
-
-# exec s6-setuidgid user qbittorrent-nox --webui-port="${WEBUI_PORT}"
-s6-setuidgid user cd; qbittorrent-nox --webui-port="${WEBUI_PORT}"
+exec \
+	s6-setuidgid user /usr/local/bin/qbittorrent-nox --webui-port="${WEBUI_PORT}"

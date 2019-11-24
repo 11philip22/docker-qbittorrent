@@ -6,7 +6,6 @@ apk add --no-cache \
     boost-system \
     boost-thread \
     ca-certificates \
-    dumb-init \
     libressl \
     qt5-qtbase
 
