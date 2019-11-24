@@ -1,8 +1,8 @@
 FROM philipwold/alpine-s6
 
-ENV HOME="/config"
-ENV XDG_CONFIG_HOME="/config"
-ENV XDG_DATA_HOME="/config"
+ENV HOME="/config" \
+    XDG_CONFIG_HOME="/config" \
+    XDG_DATA_HOME="/config"
 
 COPY root/usr/local/bin/install.sh /usr/local/bin/install.sh
 
